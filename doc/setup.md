@@ -1,31 +1,41 @@
 insert installation and config instructions here
 
-For MacOS Silicon chip (M1-M4):
+For MacOS Silicon chip:
 
-Anaconda use not recommended, use Poetry or virtual-env from here https://virtualenv.pypa.io instead
+Anaconda use NOT recommended, use miniforge3 (install [here](https://github.com/conda-forge/miniforge))
 
-1) Create your conda env(#TODO):
-```
-conda create --name droids python=3.9
-```
-2) Activate
-```
-conda activate droids
-```
-3) For JAX installation (#TODO):
+1) Activate miniforge3 on your path:
+`~/miniforge3/bin/conda init zsh`
 
-Refer to: https://developer.apple.com/metal/jax/
-and the thread here: https://stackoverflow.com/questions/70815864/how-to-install-trax-jax-jaxlib-on-m1-mac-on-macos-12
+2) Create your conda miniforge3 env:
+`conda create -n droids python=3.12`
 
-4) For absl:
-```
-pip install absl-py
-```
-5) For BRAX installation (#TODO):
-```
-conda install -c conda-forge brax
-```
+3) Activate env
+`conda activate droids`
+
+4) Check that your Python is arm64 (for libraries compatibility)
+`lipo -archs $(which python3)`
+
+If you don't have homebrew, install [here](https://brew.sh/)
+
+5) Use homebrew to install cmake and gcc dependencies first:
+`brew install cmake gcc `
+
+Now, install a bunch of libraries you need:
+
+`pip install mujoco`        phys simulation
+`pip install -U jax`        CPU-only version of JAX
+`pip install brax`          parallel phys simulation
+`pip install mediapy`       visuals
+`pip install wandb`         AI dev tool
+`pip install playground`    robotics learning sim-to-real
+
+Extra stuff you might need:
+`pip install torch`
+`pip install dm_control`
+
 Useful conda commands for verifying your setup:
 
 conda list           | to list your packages in env
+conda env list       | to list your existing envs
 conda deactivate     | to exit your curr env
