@@ -36,6 +36,6 @@ Extra stuff you might need:
 
 Useful conda commands for verifying your setup:
 
-- conda list           | to list your packages in env
-- conda env list       | to list your existing envs
-- conda deactivate     | to exit your curr env
+- `conda list`           | to list your packages in env
+- `conda env list`       | to list your existing envs
+- `conda deactivate`     | to exit your curr env
